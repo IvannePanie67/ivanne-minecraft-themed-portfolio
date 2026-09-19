@@ -1,0 +1,203 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --green:#62d66f;--green2:#9cff9c;--dark:#080d0a;--panel:rgba(10,18,13,.82);
+ --panel2:rgba(17,28,20,.9);--text:#effff0;--muted:#a9b7ab;--line:rgba(156,255,156,.18);
+ --gold:#f2d27c;--shadow:0 18px 60px rgba(0,0,0,.45);
+}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{background:#080d0a;color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.7;overflow-x:hidden}
+body:after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.055;background-image:linear-gradient(rgba(255,255,255,.7) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.7) 1px,transparent 1px);background-size:4px 4px;mix-blend-mode:overlay}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+.world-bg{position:fixed;inset:0;z-index:-3;overflow:hidden;background:#071008}
+.world-bg video{position:absolute;width:100%;height:100%;object-fit:cover;filter:brightness(.35) saturate(.9);transform:scale(1.04)}
+.video-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,8,5,.34),rgba(3,8,5,.54) 50%,rgba(3,8,5,.82))}
+.vignette{position:absolute;inset:0;background:radial-gradient(circle at 50% 35%,transparent 0,rgba(0,0,0,.18) 45%,rgba(0,0,0,.68) 100%)}
+.scanlines{position:absolute;inset:0;opacity:.1;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.08) 4px)}
+.particles{position:absolute;inset:0;overflow:hidden}
+.particle{position:absolute;width:3px;height:3px;background:var(--green2);box-shadow:0 0 12px var(--green);opacity:.45;animation:float linear infinite}
+@keyframes float{from{transform:translateY(105vh)}to{transform:translateY(-10vh)}}
+.loader{position:fixed;inset:0;z-index:100;background:#050905;display:grid;place-items:center;align-content:center;gap:15px;font-family:"Press Start 2P",monospace;transition:opacity .5s,visibility .5s}
+.loader.hide{opacity:0;visibility:hidden}
+.loader-cube{font-size:50px;color:var(--green);animation:spin 1s steps(4) infinite;text-shadow:8px 8px 0 #265b2b}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader p{font-size:11px;letter-spacing:1px}.loader small{font:10px Inter;color:#728074}
+.loadbar{width:260px;height:12px;border:2px solid #345239;padding:2px}.loadbar span{display:block;height:100%;width:0;background:var(--green);animation:load 1.5s ease forwards}
+@keyframes load{to{width:100%}}
+.topbar{position:fixed;top:0;left:0;right:0;height:78px;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(5,11,7,.74);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:11px;font-family:"Press Start 2P",monospace;font-size:12px;letter-spacing:2px;text-shadow:3px 3px #111}
+.brand-block{width:23px;height:23px;background:linear-gradient(135deg,#8be27f 0 25%,#42a64b 26% 65%,#286631 66%);border:2px solid #17391c;box-shadow:3px 3px 0 #071008}
+.green{color:var(--green)}
+.hud{display:flex;align-items:center;gap:12px;font:9px "Press Start 2P",monospace}.hud-pill{color:var(--green2)}.hud-pill i{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);margin-right:5px}
+.xp{width:130px;height:8px;border:2px solid #344b36;background:#101710;padding:1px}.xp span{display:block;height:100%;width:0;background:linear-gradient(90deg,#43aa4d,#b3ff9f);transition:width .3s}
+nav{display:flex;gap:20px;font:9px "Press Start 2P",monospace}nav a{color:#a8b4a9;padding:9px 0;position:relative}nav a:hover,nav a.active{color:var(--green2)}nav a.active:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--green);box-shadow:0 0 10px var(--green)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--green2);padding:8px 10px}
+.hero{min-height:100vh;padding:150px 7vw 70px;position:relative;display:flex;align-items:center;max-width:1500px;margin:auto}
+.hero-grid{width:100%;display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:center}
+.quest-tag,.eyebrow,.pixel-title{font:9px "Press Start 2P",monospace;letter-spacing:1px}.quest-tag{display:inline-flex;gap:9px;color:#0b130c;background:var(--green);padding:8px 11px;box-shadow:4px 4px 0 #172a19;margin-bottom:24px}.eyebrow{color:var(--green);margin-bottom:17px}
+.hero h1,h2,h3{line-height:1.1}.hero h1{font:clamp(42px,8vw,100px) "Press Start 2P",monospace;letter-spacing:-4px;text-shadow:7px 7px 0 rgba(0,0,0,.55);margin-left:-5px}.hero h1 span,h2 span{color:var(--green);text-shadow:5px 5px 0 #17371a}
+.role-line{margin:28px 0 18px;font:11px "Press Start 2P",monospace;color:#d4e3d5;max-width:700px}.cursor{display:inline-block;width:9px;height:15px;background:var(--green);vertical-align:-2px;margin-right:8px;animation:blink .8s steps(2) infinite}@keyframes blink{50%{opacity:0}}
+.lead{max-width:660px;color:var(--muted);font-size:15px}
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:29px}.mc-btn{display:inline-flex;gap:10px;align-items:center;border:2px solid #507655;background:rgba(10,19,12,.78);padding:14px 17px;color:#e9f7e9;font:9px "Press Start 2P",monospace;box-shadow:5px 5px 0 #050905;transition:.2s}.mc-btn.primary{background:var(--green);color:#091009;border-color:#9cff9c}.mc-btn:hover{transform:translate(-2px,-3px);box-shadow:8px 8px 0 #050905}
+.quick-stats{display:flex;gap:0;margin-top:42px;border-top:1px solid var(--line);padding-top:20px;max-width:650px}.quick-stats div{padding:0 27px;border-right:1px solid var(--line)}.quick-stats div:first-child{padding-left:0}.quick-stats div:last-child{border:0}.quick-stats b{display:block;font:15px "Press Start 2P",monospace;color:var(--green2)}.quick-stats span{display:block;font:7px "Press Start 2P",monospace;color:#748278;margin-top:8px}
+.player-card{background:linear-gradient(145deg,rgba(15,27,18,.95),rgba(7,13,9,.92));border:2px solid #456449;box-shadow:10px 10px 0 rgba(0,0,0,.42),inset 0 0 0 4px rgba(156,255,156,.04);padding:15px;max-width:430px;justify-self:end;position:relative}.card-top{display:flex;justify-content:space-between;font:8px "Press Start 2P",monospace;color:#93a196;padding:3px 4px 14px}.inventory-frame{border:2px solid #617965;background:#111b13;padding:8px;position:relative}.inventory-frame:before{content:"";position:absolute;inset:8px;background:linear-gradient(135deg,rgba(98,214,111,.08),transparent 45%);pointer-events:none}.inventory-frame img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;image-rendering:auto;filter:saturate(.8) contrast(1.08)}.player-name{position:absolute;left:18px;bottom:18px;background:rgba(4,9,5,.85);padding:7px 10px;color:var(--green2);font:9px "Press Start 2P",monospace}.corner{position:absolute;width:18px;height:18px;border-color:var(--green);z-index:2}.c1{left:2px;top:2px;border-left:3px solid;border-top:3px solid}.c2{right:2px;top:2px;border-right:3px solid;border-top:3px solid}.c3{left:2px;bottom:2px;border-left:3px solid;border-bottom:3px solid}.c4{right:2px;bottom:2px;border-right:3px solid;border-bottom:3px solid}
+.health{font:13px Inter;letter-spacing:1px;color:#e95b5b;text-shadow:1px 1px #421919;padding:12px 2px}.profile-meta{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;gap:15px}.profile-meta span{display:block;color:#68766b;font:7px "Press Start 2P",monospace}.profile-meta b{font:8px "Press Start 2P",monospace;color:#e5f0e5;display:block;margin-top:7px}.hotbar{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-top:12px}.slot{aspect-ratio:1;border:2px solid #3c4c3e;background:#1a251b;display:grid;place-items:center;color:#89958b;font-size:17px}.slot.selected{border-color:#d9eadb;box-shadow:inset 0 0 0 2px #5e6f60;color:var(--green2)}
+.scroll-cue{position:absolute;bottom:28px;left:7vw;font:8px "Press Start 2P",monospace;color:#718074}.scroll-cue span{color:var(--green);font-size:15px;margin-right:8px}
+.section{max-width:1250px;margin:auto;padding:115px 7vw;position:relative}.darker{max-width:none;background:linear-gradient(90deg,rgba(5,12,7,.88),rgba(10,20,13,.72),rgba(5,12,7,.88));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.darker>*{max-width:1110px;margin-left:auto;margin-right:auto}.section-head{display:flex;gap:22px;align-items:flex-start;margin-bottom:52px}.section-number{font:12px "Press Start 2P",monospace;color:#48644d;border:1px solid var(--line);padding:10px 8px}.section-head h2{font:clamp(28px,5vw,52px) "Press Start 2P",monospace;letter-spacing:-2px}.section-intro{max-width:720px;color:var(--muted);margin:-25px auto 38px}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.terminal{background:#071008;border:2px solid #3d5942;box-shadow:8px 8px 0 rgba(0,0,0,.3)}.terminal-head{display:flex;align-items:center;gap:6px;padding:10px 12px;background:#101b12;border-bottom:1px solid #314333}.terminal-head span{width:8px;height:8px;border-radius:50%;background:#647468}.terminal-head b{font:8px "Press Start 2P",monospace;color:#829083;margin-left:auto}.terminal-body{padding:24px;font:10px "Press Start 2P",monospace;color:#c6d2c8;line-height:2.2}.terminal-body em{color:#718174}.terminal-body strong{color:var(--green)}.online{color:var(--green2)}.terminal-note{color:#68776b!important;margin-top:13px;border-top:1px dashed #304133;padding-top:13px}.pixel-title{color:var(--green);margin-bottom:16px}.about-copy h3{font:25px "Press Start 2P",monospace;line-height:1.55;margin-bottom:20px}.about-copy h3 span{color:var(--green)}.about-copy p{color:var(--muted);margin-bottom:16px}.achievement-line{display:flex;gap:13px;margin-top:26px;border:1px solid var(--line);padding:14px;background:rgba(18,30,20,.7)}.achievement-line>span{color:var(--gold);font-size:22px}.achievement-line b{display:block;font:8px "Press Start 2P",monospace;color:var(--gold)}.achievement-line small{color:#7f8d82}
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.skill-card{position:relative;background:rgba(9,18,11,.78);border:1px solid #345239;padding:25px;min-height:260px;transition:.25s;overflow:hidden}.skill-card:after{content:"";position:absolute;width:80px;height:80px;right:-35px;top:-35px;background:rgba(98,214,111,.08);transform:rotate(45deg)}.skill-card:hover{transform:translateY(-7px);border-color:var(--green);box-shadow:0 12px 35px rgba(50,180,70,.12)}.skill-icon{font:24px "Press Start 2P";color:var(--green2);margin-bottom:18px;text-shadow:3px 3px #1c4922}.skill-card>span{font:7px "Press Start 2P";color:#637365}.skill-card h3{font:16px "Press Start 2P";margin:13px 0;line-height:1.55}.skill-card p{font-size:13px;color:#89978d;min-height:63px}.skill-bar{height:7px;border:1px solid #38523c;background:#0a110b;margin-top:17px;padding:1px}.skill-bar i{display:block;height:100%;background:linear-gradient(90deg,#348b3d,#a6f6a1)}.skill-card small{font:7px "Press Start 2P";color:#647267;display:block;margin-top:8px}
+.inventory{margin-top:34px;border:2px solid #405a44;background:rgba(7,14,9,.8);padding:17px}.inventory-label{font:8px "Press Start 2P";color:var(--green);margin-bottom:13px}.inventory-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.inv-slot{aspect-ratio:1.3;background:#172219;border:2px solid #405044;display:grid;place-items:center;align-content:center;gap:5px;transition:.2s}.inv-slot:hover{border-color:#dceede;background:#243326;transform:scale(1.03)}.inv-slot span{font-size:22px;color:var(--green2)}.inv-slot small{font:6px "Press Start 2P";color:#738074}
+.hobby-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.hobby{display:flex;gap:18px;align-items:flex-start;border:1px solid var(--line);background:rgba(10,18,12,.7);padding:24px;transition:.2s}.hobby:hover{border-color:var(--green);transform:translateY(-5px)}.block-icon{min-width:58px;height:58px;display:grid;place-items:center;background:#18251a;border:2px solid #526955;font-size:26px;box-shadow:4px 4px 0 #080e09}.hobby span{font:7px "Press Start 2P";color:#6f7e72}.hobby h3{font:15px "Press Start 2P";margin:8px 0 12px}.hobby p{font-size:12px;color:#89968c}
+.certificate-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.cert-card{padding:0;text-align:left;background:rgba(10,18,12,.82);border:1px solid #38523c;color:var(--text);cursor:pointer;transition:.25s;overflow:hidden}.cert-card:hover{transform:translateY(-6px);border-color:var(--green);box-shadow:0 15px 40px rgba(0,0,0,.4)}.cert-img{position:relative;overflow:hidden;background:#101710}.cert-img img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;transition:.35s}.cert-card:hover .cert-img img{transform:scale(1.03);filter:brightness(.7)}.inspect{position:absolute;right:12px;bottom:12px;background:#0a110c;color:var(--green2);padding:7px 9px;font:7px "Press Start 2P";opacity:0;transform:translateY(8px);transition:.2s}.cert-card:hover .inspect{opacity:1;transform:none}.cert-info{padding:18px 20px 20px}.cert-info>span{font:7px "Press Start 2P";color:var(--green)}.cert-info h3{font:13px "Press Start 2P";line-height:1.65;margin:10px 0}.cert-info p{font-size:11px;color:#77847a}
+.contact-section{padding-top:100px;padding-bottom:120px}.contact-panel{position:relative;text-align:center;overflow:hidden;border:2px solid #48634c;background:linear-gradient(145deg,rgba(11,22,13,.94),rgba(5,12,7,.9));padding:75px 25px;box-shadow:10px 10px 0 rgba(0,0,0,.3)}.portal-glow{position:absolute;width:300px;height:300px;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(98,214,111,.12),transparent 65%);pointer-events:none}.contact-panel h2{position:relative;font:30px "Press Start 2P";margin:12px 0 20px}.contact-panel>p:not(.eyebrow){position:relative;color:var(--muted);max-width:650px;margin:auto}.socials{position:relative;display:flex;justify-content:center;gap:12px;margin-top:30px;flex-wrap:wrap}.socials a{border:1px solid #48634c;padding:12px 16px;font:8px "Press Start 2P";background:#0b150d}.socials a:hover{background:var(--green);color:#091009}.portal-status{position:relative;margin-top:35px;font:7px "Press Start 2P";color:#738177}.portal-status span{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:7px;box-shadow:0 0 10px var(--green)}
+footer{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:25px 7vw;border-top:1px solid var(--line);color:#68766c;font-size:11px;background:#060b07}.footer-brand{font:8px "Press Start 2P";color:var(--green)}#topBtn{border:1px solid var(--line);background:#0c160e;color:var(--green2);padding:8px 11px;cursor:pointer}
+.music-dock{position:fixed;right:18px;bottom:18px;z-index:45;display:flex;align-items:center;gap:8px}.music-btn{border:2px solid #4c6b51;background:rgba(5,12,7,.92);color:#dcebdc;padding:9px 12px;display:grid;grid-template-columns:25px 1fr;grid-template-rows:auto auto;text-align:left;column-gap:8px;box-shadow:5px 5px 0 rgba(0,0,0,.4);cursor:pointer}.music-btn>span{grid-row:1/3;font-size:20px;color:var(--green)}.music-btn b{font:7px "Press Start 2P";color:var(--green2)}.music-btn small{font:8px Inter;color:#728075;margin-top:2px}.music-btn.playing{border-color:var(--green);box-shadow:5px 5px 0 #19321c}.sound-wave{display:none;align-items:end;gap:3px;height:24px}.sound-wave i{width:3px;background:var(--green);height:7px}.music-dock.playing .sound-wave{display:flex}.music-dock.playing .sound-wave i{animation:wave .7s ease-in-out infinite alternate}.music-dock.playing .sound-wave i:nth-child(2){animation-delay:.12s}.music-dock.playing .sound-wave i:nth-child(3){animation-delay:.25s}.music-dock.playing .sound-wave i:nth-child(4){animation-delay:.1s}.music-dock.playing .sound-wave i:nth-child(5){animation-delay:.2s}@keyframes wave{to{height:22px}}
+.modal{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:25px}.modal.open{display:grid}.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px)}.modal-card{position:relative;z-index:1;max-width:950px;max-height:90vh;overflow:auto;background:#091009;border:2px solid #58725c;padding:12px;box-shadow:10px 10px 0 rgba(0,0,0,.5)}.modal-card img{display:block;width:100%;max-height:72vh;object-fit:contain;background:#111}.modal-card>div{padding:15px 5px 3px}.modal-card span{font:7px "Press Start 2P";color:var(--green)}.modal-card h3{font:14px "Press Start 2P";margin-top:9px}.modal-close{position:absolute;right:-2px;top:-42px;width:35px;height:35px;border:2px solid #58725c;background:#091009;color:#fff;font-size:22px;cursor:pointer}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:1050px){.hud{display:none}nav{gap:13px}.hero-grid{gap:45px}.skill-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:780px){.topbar{height:68px}.menu-btn{display:block}nav{display:none;position:absolute;top:68px;left:0;right:0;background:rgba(5,11,7,.97);padding:18px 7vw;flex-direction:column;gap:4px;border-bottom:1px solid var(--line)}nav.open{display:flex}nav a{padding:12px 0}.brand{font-size:9px}.brand-block{width:19px;height:19px}.hero{padding:125px 7vw 80px}.hero-grid{grid-template-columns:1fr;gap:50px}.hero h1{font-size:clamp(34px,12vw,65px);letter-spacing:-2px}.role-line{font-size:8px;line-height:1.8}.lead{font-size:13px}.player-card{justify-self:center;width:min(100%,400px)}.quick-stats{justify-content:space-between}.quick-stats div{padding:0 14px}.quick-stats b{font-size:11px}.quick-stats span{font-size:6px}.scroll-cue{display:none}.section{padding:85px 7vw}.section-head{gap:12px}.section-head h2{font-size:25px}.about-layout,.hobby-grid,.skill-grid,.certificate-grid{grid-template-columns:1fr}.inventory-grid{grid-template-columns:repeat(3,1fr)}.music-dock{right:10px;bottom:10px}.music-btn b{font-size:6px}.music-btn small{font-size:7px}footer{flex-direction:column;text-align:center}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+/* =========================================================
+   KYNE WORLD EXPANSION — biome engine, day/night mode & FX
+   ========================================================= */
+:root{
+ --biome-a:#74d46b;--biome-b:#baf7a3;--biome-c:#162b19;
+ --accent:#7dff70;--accent2:#d7ffd0;
+ --section-glow:rgba(100,255,110,.20);
+}
+body{transition:background .7s,color .7s}
+.world-controls{display:flex;align-items:center;gap:8px;order:3}
+.theme-toggle{width:54px;height:28px;border:2px solid var(--line);background:#101a12;box-shadow:inset 0 0 0 2px rgba(0,0,0,.25),0 4px 14px rgba(0,0,0,.2);position:relative;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:space-around;color:#fff;border-radius:2px}
+.theme-toggle .sun,.theme-toggle .moon{font-size:12px;line-height:1;z-index:2}
+.theme-toggle i{position:absolute;left:3px;top:3px;width:18px;height:18px;background:#b7ff9b;box-shadow:2px 2px 0 #35552f;transition:transform .35s cubic-bezier(.2,.8,.2,1);border-radius:2px}
+.theme-label{font:7px "Press Start 2P",monospace;color:var(--muted);min-width:76px}
+body.light-mode{
+ --green:#238a37;--green2:#276b2e;--dark:#edf7e9;--panel:rgba(248,255,246,.88);
+ --panel2:rgba(235,248,231,.94);--text:#142018;--muted:#526456;--line:rgba(35,138,55,.22);
+ --gold:#9b6b0b;--accent:#238a37;--accent2:#eaffdf;--section-glow:rgba(40,160,60,.18);
+ background:#dcebd5;
+}
+body.light-mode .theme-toggle{background:#dff2ff;border-color:#77a5bd}
+body.light-mode .theme-toggle i{transform:translateX(25px);background:#ffe070;box-shadow:2px 2px 0 #b89122}
+body.light-mode .theme-label{color:#3d5e43}
+body.light-mode .world-bg video{filter:brightness(.58) saturate(1.05)}
+body.light-mode .video-shade{background:linear-gradient(180deg,rgba(220,242,216,.15),rgba(213,236,211,.30) 50%,rgba(190,219,186,.60))}
+body.light-mode .vignette{background:radial-gradient(circle at 50% 30%,transparent 0,rgba(40,90,45,.05) 50%,rgba(30,60,35,.28) 100%)}
+body.light-mode .topbar{background:rgba(245,255,242,.78)}
+body.light-mode .brand{text-shadow:2px 2px rgba(255,255,255,.8)}
+body.light-mode .section.darker{background:rgba(229,243,224,.68)}
+body.light-mode .section-card,body.light-mode .skill-card,body.light-mode .cert-card,body.light-mode .contact-panel{box-shadow:0 20px 50px rgba(30,80,35,.12)}
+body.light-mode .music-dock{background:rgba(246,255,243,.88)}
+body.light-mode .scanlines{opacity:.035}
+
+/* biome-specific section atmosphere */
+.biome-section{isolation:isolate;overflow:hidden;position:relative}
+.biome-section:before{
+ content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;
+ background:
+ radial-gradient(circle at 15% 80%,var(--section-glow),transparent 30%),
+ radial-gradient(circle at 85% 20%,var(--section-glow),transparent 28%);
+ opacity:.95;transition:background .8s,opacity .8s;
+}
+.biome-section:after{
+ content:"";position:absolute;inset:auto 0 0;height:30%;z-index:-1;pointer-events:none;
+ background:linear-gradient(transparent,var(--biome-c));opacity:.55;
+}
+.biome-section[data-biome="plains"]{--biome-a:#65d55e;--biome-b:#dfffc6;--biome-c:rgba(28,91,42,.45);--section-glow:rgba(101,213,94,.24)}
+.biome-section[data-biome="lush"]{--biome-a:#28c47a;--biome-b:#8bffc8;--biome-c:rgba(6,67,52,.48);--section-glow:rgba(40,196,122,.22)}
+.biome-section[data-biome="nether"]{--biome-a:#ff5b2f;--biome-b:#ffb13b;--biome-c:rgba(102,12,4,.62);--section-glow:rgba(255,70,30,.26)}
+.biome-section[data-biome="cherry"]{--biome-a:#ff8bbd;--biome-b:#ffd1e5;--biome-c:rgba(83,30,65,.50);--section-glow:rgba(255,130,190,.22)}
+.biome-section[data-biome="end"]{--biome-a:#d38cff;--biome-b:#f1d1ff;--biome-c:rgba(41,15,70,.58);--section-glow:rgba(188,100,255,.25)}
+.biome-section[data-biome="ocean"]{--biome-a:#35d9e8;--biome-b:#a8fbff;--biome-c:rgba(4,43,75,.62);--section-glow:rgba(45,210,235,.24)}
+
+.biome-section .section-head,.biome-section .hero-grid,.biome-section .contact-panel{position:relative;z-index:3}
+.biome-section .section-number{color:var(--biome-a);text-shadow:0 0 20px var(--section-glow)}
+.biome-section h2 span{color:var(--biome-a)}
+.biome-section .mc-btn.primary{background:linear-gradient(135deg,var(--biome-a),var(--biome-b));color:#0b130c;border-color:var(--biome-a)}
+.biome-section .skill-card:hover,.biome-section .cert-card:hover{border-color:var(--biome-a);box-shadow:0 0 0 1px var(--biome-a),0 20px 55px var(--section-glow);transform:translateY(-8px)}
+
+/* floating item/mob layer */
+.biome-fx{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.pixel-entity{
+ position:absolute;display:grid;place-items:center;font-family:"Press Start 2P",monospace;
+ filter:drop-shadow(5px 7px 0 rgba(0,0,0,.28));
+ animation:entityFloat var(--dur,7s) ease-in-out infinite;
+ animation-delay:var(--delay,0s);opacity:.78;
+}
+.pixel-entity .entity-icon{font-size:var(--size,30px);line-height:1}
+.pixel-entity .entity-name{font-size:6px;margin-top:6px;color:rgba(255,255,255,.75);text-shadow:2px 2px #111}
+@keyframes entityFloat{0%,100%{transform:translate3d(0,12px,0) rotate(-2deg)}50%{transform:translate3d(0,-18px,0) rotate(2deg)}}
+.pixel-entity.item{animation-name:itemBob}
+@keyframes itemBob{0%,100%{transform:translateY(10px) rotate(-5deg) scale(.96)}50%{transform:translateY(-20px) rotate(8deg) scale(1.04)}}
+.pixel-entity.mob{animation-name:mobWalk}
+@keyframes mobWalk{0%,100%{transform:translate(-10px,8px) scale(1)}50%{transform:translate(14px,-10px) scale(1.06)}}
+.pixel-entity.bubble{animation-name:bubbleRise}
+@keyframes bubbleRise{from{transform:translateY(20px) scale(.7);opacity:0}25%{opacity:.8}to{transform:translateY(-180px) scale(1.15);opacity:0}}
+
+.block-stack{position:absolute;bottom:-8px;left:4%;width:100px;height:80px;opacity:.5;transform:perspective(400px) rotateX(55deg) rotateZ(-8deg);background:repeating-linear-gradient(90deg,var(--biome-a) 0 24px,transparent 24px 27px),repeating-linear-gradient(0deg,rgba(255,255,255,.12) 0 24px,transparent 24px 27px);filter:drop-shadow(8px 8px 0 rgba(0,0,0,.25))}
+.mob-shadow{position:absolute;width:90px;height:12px;border-radius:50%;background:rgba(0,0,0,.32);filter:blur(4px);animation:shadowPulse 3s ease-in-out infinite}
+@keyframes shadowPulse{50%{transform:scale(.75);opacity:.18}}
+
+/* Biome HUD */
+.biome-hud{position:fixed;left:22px;bottom:24px;z-index:45;display:flex;align-items:center;gap:10px;padding:10px 13px;background:rgba(5,12,7,.72);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(12px);box-shadow:0 12px 35px rgba(0,0,0,.25);font-family:"Press Start 2P",monospace;transition:.4s}
+.biome-hud .hud-biome-icon{width:27px;height:27px;display:grid;place-items:center;background:linear-gradient(135deg,var(--green),#203d22);border:2px solid rgba(255,255,255,.18);font-size:13px}
+.biome-hud small{display:block;font-size:6px;color:#819184;margin-bottom:4px}
+.biome-hud b{font-size:8px;color:#eaffea}
+.biome-hud em{font:9px Inter,sans-serif;color:#aab9ad;font-style:normal;border-left:1px solid rgba(255,255,255,.15);padding-left:10px}
+body.light-mode .biome-hud{background:rgba(245,255,242,.82);border-color:rgba(20,70,25,.15)}
+body.light-mode .biome-hud b{color:#214b27}.biome-hud em{color:#55705a}
+
+.crosshair{position:fixed;top:50%;left:50%;width:12px;height:12px;transform:translate(-50%,-50%);z-index:90;pointer-events:none;opacity:.13}
+.crosshair:before,.crosshair:after{content:"";position:absolute;background:currentColor}.crosshair:before{width:2px;height:12px;left:5px}.crosshair:after{width:12px;height:2px;top:5px}
+.block-cursor{position:fixed;z-index:89;pointer-events:none;opacity:0;transform:translate(16px,16px);font:22px "Press Start 2P";color:var(--biome-a);text-shadow:2px 2px #111;transition:opacity .15s}
+
+/* stronger section transitions */
+.section{transition:background .8s,transform .5s}
+.section::selection,.hero::selection{background:var(--biome-a);color:#081009}
+.section-head:after{content:"";display:block;width:74px;height:3px;margin-top:18px;background:linear-gradient(90deg,var(--biome-a),transparent);box-shadow:0 0 18px var(--section-glow)}
+.cert-card,.skill-card,.section-card{transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s}
+.skill-card:hover .skill-icon{animation:blockPulse .65s steps(2) infinite}
+@keyframes blockPulse{50%{transform:translateY(-5px) rotate(2deg) scale(1.06);filter:drop-shadow(0 8px 12px var(--section-glow))}}
+
+body.light-mode .pixel-entity .entity-name{text-shadow:1px 1px rgba(0,0,0,.7)}
+body.light-mode .biome-section[data-biome="nether"]{--biome-c:rgba(120,30,10,.30)}
+body.light-mode .biome-section[data-biome="end"]{--biome-c:rgba(75,30,100,.25)}
+
+@media(max-width:900px){
+ .world-controls{order:0;margin-left:auto;margin-right:8px}.theme-label{display:none}
+ .biome-hud{left:10px;bottom:12px;transform:scale(.86);transform-origin:left bottom}
+ .biome-hud em{display:none}
+ .pixel-entity{opacity:.55}
+}
+@media(prefers-reduced-motion:reduce){
+ .pixel-entity,.theme-toggle i{animation:none!important;transition:none!important}
+}
+
+.pickup-burst{position:fixed;z-index:200;pointer-events:none;width:0;height:0}
+.pickup-burst i{position:absolute;font-style:normal;font-family:"Press Start 2P";color:var(--active-biome,var(--green));text-shadow:2px 2px #111;animation:pickup .65s cubic-bezier(.2,.8,.2,1) forwards}
+.pickup-burst i:nth-child(1){--dx:-28px;--dy:-22px}.pickup-burst i:nth-child(2){--dx:24px;--dy:-30px}.pickup-burst i:nth-child(3){--dx:34px;--dy:16px}.pickup-burst i:nth-child(4){--dx:-20px;--dy:25px}
+@keyframes pickup{0%{opacity:1;transform:translate(-50%,-50%) scale(.4)}70%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.2)}}
+
+/* Real Minecraft-inspired pixel entities: mobs and inventory items */
+.pixel-entity{z-index:2;min-width:54px;text-align:center;transform-origin:center bottom;}
+.pixel-entity .entity-image{display:block;width:var(--size,44px);height:var(--size,44px);object-fit:contain;image-rendering:pixelated;filter:drop-shadow(5px 7px 0 rgba(0,0,0,.34));user-select:none;}
+.pixel-entity.mob .entity-image{width:calc(var(--size,44px) * 1.18);height:calc(var(--size,44px) * 1.18);}
+.pixel-entity .entity-name{display:block;margin-top:7px;font-size:6px;letter-spacing:.2px;color:#fff;text-shadow:2px 2px 0 #111;white-space:nowrap;}
+.pixel-entity.item .entity-name{color:#d8f7ff;}
+.pixel-entity.mob .entity-name{color:#e8ffd9;}
+@media(max-width:700px){.pixel-entity{opacity:.45}.pixel-entity .entity-name{display:none}.pixel-entity .entity-image{width:34px;height:34px}.pixel-entity.mob .entity-image{width:42px;height:42px}}
+
+/* =========================================================
+   ADVENTURE HUD / WORLD MAP / CRAFTING RECIPES
+   ========================================================= */
+.explore-hud{position:fixed;right:22px;top:94px;z-index:46;min-width:230px;padding:10px 12px;background:rgba(5,10,6,.78);border:1px solid rgba(255,255,255,.16);box-shadow:7px 7px 0 rgba(0,0,0,.28);backdrop-filter:blur(12px);font-family:"Press Start 2P",monospace;transition:.35s}
+.hud-row{display:flex;align-items:center;gap:7px;margin:4px 0;font-size:8px}.hud-label{width:25px}.hearts{font-size:8px;color:#ff6868;letter-spacing:1px;text-shadow:1px 1px #551616}.hunger{font-size:8px;color:#e8a85a;letter-spacing:2px}.xp-row{gap:8px}.mini-xp{height:8px;flex:1;border:2px solid #465648;background:#101610;padding:1px}.mini-xp i{display:block;width:0;height:100%;background:linear-gradient(90deg,#37b848,#baff8d);transition:width .5s}.xp-row b{font-size:7px;color:#cdeacb;min-width:33px}.coords{border-top:1px solid rgba(255,255,255,.1);margin-top:7px;padding-top:7px;color:#78877b;font-size:6px}.coords b{color:#d7e8d7;font-size:7px}
+.world-map{position:fixed;right:22px;bottom:22px;z-index:46;width:340px;padding:12px 14px;background:rgba(5,10,6,.82);border:1px solid rgba(255,255,255,.16);box-shadow:7px 7px 0 rgba(0,0,0,.28);backdrop-filter:blur(12px);font-family:"Press Start 2P",monospace}.map-title{font-size:7px;color:#a9b9aa;margin-bottom:12px}.map-track{position:relative;display:flex;justify-content:space-between;align-items:center}.map-line{position:absolute;left:17px;right:17px;top:17px;height:3px;background:linear-gradient(90deg,#5bc65f,#d084ff,#39d6e8);opacity:.6}.world-map button{position:relative;z-index:2;width:34px;height:34px;border:2px solid #4a5c4c;background:#182219;color:#fff;cursor:pointer;display:grid;place-items:center;font-size:13px;box-shadow:2px 2px 0 #050805;transition:.2s}.world-map button small{position:absolute;top:39px;font-size:5px;color:#819083;white-space:nowrap}.world-map button:hover,.world-map button.current{transform:translateY(-3px);border-color:var(--biome-a,#7cff7a);box-shadow:0 0 14px rgba(100,255,110,.25)}.map-player{position:absolute;z-index:5;top:25px;left:11px;color:#fff;text-shadow:0 0 8px #b9ff9c;pointer-events:none;transition:left .55s cubic-bezier(.2,.8,.2,1),top .3s}.advancement-toast{position:fixed;right:22px;top:185px;z-index:70;display:flex;align-items:center;gap:12px;min-width:300px;padding:11px 13px;background:rgba(12,16,13,.96);border:2px solid #8d8d8d;box-shadow:6px 6px 0 rgba(0,0,0,.45);transform:translateX(130%);opacity:0;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}.advancement-toast.show{transform:none;opacity:1}.advancement-toast img{width:38px;height:38px;image-rendering:pixelated;object-fit:contain}.advancement-toast small{display:block;color:#b8b8b8;font:6px "Press Start 2P";margin-bottom:6px}.advancement-toast b{display:block;color:#ffe66d;font:8px "Press Start 2P"}.advancement-toast span{display:block;color:#aab4ac;font-size:10px;margin-top:5px}
+.biome-section[data-biome="crafting"]{--biome-a:#c4c8cc;--biome-b:#f0f0f0;--biome-c:rgba(55,60,65,.5);--section-glow:rgba(220,225,230,.16)}
+.recipe-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.recipe-card{background:rgba(8,14,9,.82);border:2px solid #4b554c;padding:22px;box-shadow:7px 7px 0 rgba(0,0,0,.28);transition:.3s}.recipe-card:hover{transform:translateY(-7px);border-color:#d2d7d4;box-shadow:0 0 0 1px #d2d7d4,10px 16px 35px rgba(0,0,0,.3)}.recipe-grid-inner{display:grid;grid-template-columns:54px 16px 54px 16px 54px 25px 1fr;align-items:center;gap:7px;margin-bottom:20px}.recipe-slot,.crafted-item{height:54px;background:#1a211b;border:2px solid #505a52;display:grid;place-items:center}.recipe-slot img,.crafted-item img{width:36px;height:36px;image-rendering:pixelated;object-fit:contain}.recipe-slot span{font:15px "Press Start 2P";color:#bce8bd}.recipe-grid-inner>b{font:12px "Press Start 2P";color:#a5afa7;text-align:center}.arrow{font:22px Inter;color:#d7e2d8;text-align:center}.crafted-item{border-color:#d7d7b0;background:#303329}.crafted-item small{font:5px "Press Start 2P";color:#ffe680;white-space:nowrap}.recipe-card h3{font:12px "Press Start 2P";margin-bottom:10px;color:#edf4ed}.recipe-card p{color:#8c998f;font-size:12px}
+.hotbar .slot{position:relative;overflow:hidden}.hotbar .slot img{width:24px;height:24px;image-rendering:pixelated;object-fit:contain}.hotbar .slot small{position:absolute;right:3px;bottom:1px;font:6px "Press Start 2P";color:#bfc9c0}.hotbar .slot.locked{opacity:.48}.hotbar .slot:not(.locked):hover{transform:translateY(-2px);border-color:#e5f4e4}.hotbar .slot.selected{background:#253126}
+body.light-mode .explore-hud,body.light-mode .world-map,body.light-mode .advancement-toast{background:rgba(246,255,244,.9);border-color:rgba(35,80,40,.2);box-shadow:7px 7px 0 rgba(30,70,35,.12)}body.light-mode .coords b{color:#29442d}body.light-mode .world-map button{background:#e4f0e1;color:#29442d}body.light-mode .advancement-toast{color:#172018}.light-mode .recipe-card{background:rgba(246,252,244,.9);border-color:#9ca69e}.light-mode .recipe-slot,.light-mode .crafted-item{background:#dce7dc;border-color:#a1aaa3}
+@media(max-width:900px){.explore-hud{right:10px;top:80px;transform:scale(.82);transform-origin:top right}.world-map{right:10px;bottom:10px;width:300px;transform:scale(.78);transform-origin:bottom right}.advancement-toast{right:10px;top:150px;min-width:260px;transform:translateX(120%) scale(.9);transform-origin:right top}.advancement-toast.show{transform:translateX(0) scale(.9)}.recipe-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.explore-hud{display:none}.world-map{left:50%;right:auto;transform:translateX(-50%) scale(.66);transform-origin:bottom center;width:330px}.advancement-toast{left:10px;right:10px;top:78px;min-width:0}.recipe-grid-inner{grid-template-columns:45px 12px 45px 12px 45px 18px 1fr;gap:4px}.recipe-slot,.crafted-item{height:45px}.recipe-slot img,.crafted-item img{width:29px;height:29px}.arrow{font-size:17px}}
+@media(prefers-reduced-motion:reduce){.world-map button,.map-player,.advancement-toast{transition:none!important}}
